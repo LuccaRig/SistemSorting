@@ -21,7 +21,7 @@ typedef struct Sistema{
 }Sistema;
 
 void InputLua(Lua *lua){
-    scanf("%s %d", lua->nome_lua, &lua->raio_lua);
+    scanf("\t\t%s %d", lua->nome_lua, &lua->raio_lua);
 }
 
 void InputPlaneta(Planeta *planeta, int n_luas){
@@ -43,7 +43,7 @@ void InputSistema(Sistema *sistema, int n_planetas){
     sistema->quantidade_planetas = n_planetas;
     sistema->planetas = (Planeta*) malloc(n_planetas*sizeof(Planeta));
     for(int i=0;i<n_planetas;i++){
-        scanf("%s %d %d", sistema->planetas[i].nome_planeta, &sistema->planetas[i].raio_planeta, &n_luas);
+        scanf("\t%s %d %d", sistema->planetas[i].nome_planeta, &sistema->planetas[i].raio_planeta, &n_luas);
         InputPlaneta(&sistema->planetas[i], n_luas);
     }
 }
