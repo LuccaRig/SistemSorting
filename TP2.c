@@ -15,6 +15,7 @@ typedef struct Planeta{
 
 typedef struct Sistema{
     int tempo_descoberta, raio_sol, quantidade_planetas;
+    char nome_sistema[101];
     Planeta *planetas;
 
 }Sistema;
@@ -52,9 +53,18 @@ void FreeSistema(Sistema *sistema){
     sistema->planetas = 0;
 }
 
+void FreeTudo(Sistema *Lista_Sistemas){
+    free(Lista_Sistemas);
+}
+
 int main(){
-    int quantidade_sistemas=0;
+    int quantidade_sistemas=0, n_planetas=0;
     scanf("%d", &quantidade_sistemas);
+    Sistema *Lista_Sistemas = (Sistema*) malloc(quantidade_sistemas*sizeof(Sistema));
+    for(int i=0;i<quantidade_sistemas;i++){
+        scanf("%d %s %d %d", &Lista_Sistemas[i].tempo_descoberta, Lista_Sistemas[i].nome_sistema, &Lista_Sistemas[i].raio_sol, &n_planetas);
+        InputSistema(&Lista_Sistemas[i], n_planetas);
+    }
 
     
 }
