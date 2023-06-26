@@ -31,7 +31,7 @@ void InputPlaneta(Planeta *planeta, int n_luas){
         InputLua(&planeta->luas[i]);
     }
 }
-
+    //TO DO: Limpar todos os valores nas funções free
 void FreePlaneta(Planeta *planeta){
     free(planeta->luas);
     planeta->quantidade_luas = 0;
@@ -47,14 +47,28 @@ void InputSistema(Sistema *sistema, int n_planetas){
         InputPlaneta(&sistema->planetas[i], n_luas);
     }
 }
-
-void FreeSistema(Sistema *sistema){
+    //TO DO: Limpar todos os valores nas funções free
+void FreeSistema(Sistema *sistema){ 
     free(sistema->planetas);
     sistema->planetas = 0;
 }
-
+    //TO DO: Limpar todos os valores nas funções free
 void FreeTudo(Sistema *Lista_Sistemas){
     free(Lista_Sistemas);
+}
+
+Sistema* BromeroSort(Sistema *Lista_Sistemas, int esquerda, int direita){
+    int tamanho=0;
+    tamanho = direita - esquerda; 
+    if(tamanho = 1){
+        return Lista_Sistemas;
+    }
+    if(tamanho%2 == 1){
+        BromeroSort(Lista_Sistemas, esquerda, direita - 1);
+        //Ritação()
+        return Lista_Sistemas;
+    }
+    
 }
 
 int main(){
