@@ -31,7 +31,11 @@ void InputPlaneta(Planeta *planeta, int n_luas){
         InputLua(&planeta->luas[i]);
     }
 }
-
+    //TO DO: Limpar todos os valores nas funções free
+/*void FreePlaneta(Planeta *planeta){
+    free(planeta->luas);
+    planeta->quantidade_luas = 0;
+}*/
 
 void InputSistema(Sistema *sistema, int n_planetas){
     int n_luas = 0;
@@ -43,6 +47,15 @@ void InputSistema(Sistema *sistema, int n_planetas){
         InputPlaneta(&sistema->planetas[i], n_luas);
     }
 }
+    //TO DO: Limpar todos os valores nas funções free
+/*void FreeSistema(Sistema *sistema){ 
+    free(sistema->planetas);
+    sistema->quantidade_planetas = 0;
+}
+    //TO DO: Limpar todos os valores nas funções free
+void FreeTudo(Sistema *Lista_Sistemas){
+    free(Lista_Sistemas);
+}*/
 int MaiorPlaneta(Sistema sistema){
     int maior=0;
     for(int i=0;i<sistema.quantidade_planetas;i++){
@@ -110,7 +123,7 @@ void Ritacao(Sistema *Lista_Sistemas, int InicioDoVetor1, int FinalDoVetor1, int
     for(int i=InicioDoVetor1,j=0;i<FinalDoVetor2;i++,j++){
         Lista_Sistemas[i] = Sistemas_Ordenados[j];
     }
-    //free(Sistemas_Ordenados); TO DO: Liberar memória dos Sistemas_Ordenados
+    free(Sistemas_Ordenados);
 }
 
 Sistema* BromeroSort(Sistema *Lista_Sistemas, int InicioDoVetor1, int FinalDoVetor2){
@@ -131,28 +144,6 @@ Sistema* BromeroSort(Sistema *Lista_Sistemas, int InicioDoVetor1, int FinalDoVet
     
 }
 
-void Ritação(Sistema *Lista_Sistemas, int esquerda, int direita_1,int direita_2, int direita_3){
-    
-}
-
-Sistema* BromeroSort(Sistema *Lista_Sistemas, int esquerda, int direita){
-    int tamanho=0, meio=0;
-    tamanho = direita - esquerda; 
-    if(tamanho = 1){
-        return Lista_Sistemas;
-    }
-    if(tamanho%2 == 1){
-        BromeroSort(Lista_Sistemas, esquerda, direita - 1);
-        //Ritação()
-        return Lista_Sistemas;
-    }
-    meio = (direita + esquerda)/2;
-    BromeroSort(Lista_Sistemas, esquerda, meio);
-    BromeroSort(Lista_Sistemas, meio, direita);
-    //Ritação()
-    
-}
-
 int main(){
     int quantidade_sistemas=0, n_planetas=0;
     scanf("%d", &quantidade_sistemas);
@@ -165,6 +156,8 @@ int main(){
     for(int i=0;i<quantidade_sistemas;i++){
         printf("%s", Lista_Sistemas[i].nome_sistema); 
     }
-
+    free(Lista_Sistemas->planetas->luas);
+    free(Lista_Sistemas->planetas);
+    free(Lista_Sistemas);
     
 }
