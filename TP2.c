@@ -153,6 +153,9 @@ int main(){
         InputSistema(&Lista_Sistemas[i], n_planetas);
     }
     BromeroSort(&Lista_Sistemas, 0, quantidade_sistemas);
+    for(int i=0;i<quantidade_sistemas;i++){
+        printf("%s", Lista_Sistemas[i].nome_sistema); 
+    }
 
     
 }
