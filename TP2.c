@@ -31,11 +31,7 @@ void InputPlaneta(Planeta *planeta, int n_luas){
         InputLua(&planeta->luas[i]);
     }
 }
-    //TO DO: Limpar todos os valores nas funções free
-/*void FreePlaneta(Planeta *planeta){
-    free(planeta->luas);
-    planeta->quantidade_luas = 0;
-}*/
+
 
 void InputSistema(Sistema *sistema, int n_planetas){
     int n_luas = 0;
@@ -47,15 +43,6 @@ void InputSistema(Sistema *sistema, int n_planetas){
         InputPlaneta(&sistema->planetas[i], n_luas);
     }
 }
-    //TO DO: Limpar todos os valores nas funções free
-/*void FreeSistema(Sistema *sistema){ 
-    free(sistema->planetas);
-    sistema->quantidade_planetas = 0;
-}
-    //TO DO: Limpar todos os valores nas funções free
-void FreeTudo(Sistema *Lista_Sistemas){
-    free(Lista_Sistemas);
-}*/
 int MaiorPlaneta(Sistema sistema){
     int maior=0;
     for(int i=0;i<sistema.quantidade_planetas;i++){
@@ -141,6 +128,28 @@ Sistema* BromeroSort(Sistema *Lista_Sistemas, int InicioDoVetor1, int FinalDoVet
     BromeroSort(&Lista_Sistemas, InicioDoVetor1, meio);
     BromeroSort(&Lista_Sistemas, meio, FinalDoVetor2);
     Ritacao(&Lista_Sistemas, InicioDoVetor1, tamanho, tamanho, FinalDoVetor2);
+    
+}
+
+void Ritação(Sistema *Lista_Sistemas, int esquerda, int direita_1,int direita_2, int direita_3){
+    
+}
+
+Sistema* BromeroSort(Sistema *Lista_Sistemas, int esquerda, int direita){
+    int tamanho=0, meio=0;
+    tamanho = direita - esquerda; 
+    if(tamanho = 1){
+        return Lista_Sistemas;
+    }
+    if(tamanho%2 == 1){
+        BromeroSort(Lista_Sistemas, esquerda, direita - 1);
+        //Ritação()
+        return Lista_Sistemas;
+    }
+    meio = (direita + esquerda)/2;
+    BromeroSort(Lista_Sistemas, esquerda, meio);
+    BromeroSort(Lista_Sistemas, meio, direita);
+    //Ritação()
     
 }
 
