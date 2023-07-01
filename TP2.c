@@ -14,7 +14,8 @@ typedef struct Planeta{
 }Planeta;
 
 typedef struct Sistema{
-    int tempo_descoberta, raio_sol, quantidade_planetas;
+    long int tempo_descoberta; 
+    int raio_sol, quantidade_planetas;
     char nome_sistema[101];
     Planeta *planetas;
 
@@ -153,11 +154,12 @@ void LiberaPlaneta(Sistema *sistema, int num_sistemas){
 }
 
 int main(){
-    int quantidade_sistemas=0, n_planetas=0;
-    scanf("%d\n", &quantidade_sistemas);
+    long int quantidade_sistemas=0; 
+    int n_planetas=0;
+    scanf("%ld\n", &quantidade_sistemas);
     Sistema *Lista_Sistemas = (Sistema*) malloc(quantidade_sistemas*sizeof(Sistema));
     for(int i=0;i<quantidade_sistemas;i++){
-        scanf("%d %s %d %d", &Lista_Sistemas[i].tempo_descoberta, Lista_Sistemas[i].nome_sistema, &Lista_Sistemas[i].raio_sol, &n_planetas);
+        scanf("%ld %s %d %d", &Lista_Sistemas[i].tempo_descoberta, Lista_Sistemas[i].nome_sistema, &Lista_Sistemas[i].raio_sol, &n_planetas);
         if(n_planetas!=0)PlanetaNoSitema(&Lista_Sistemas[i], n_planetas);
     }
     BromeroSort(Lista_Sistemas, 0, quantidade_sistemas);
