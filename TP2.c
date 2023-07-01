@@ -146,9 +146,9 @@ void LiberaLua(Planeta* planetas, int num_planetas){
     }
 }
 void LiberaPlaneta(Sistema *sistema, int num_sistemas){
-    for(int JaMeCanseiBoraPDS2=0;JaMeCanseiBoraPDS2<num_sistemas;JaMeCanseiBoraPDS2++){
-        LiberaLua(sistema[JaMeCanseiBoraPDS2].planetas, sistema[JaMeCanseiBoraPDS2].quantidade_planetas);
-        free(sistema[JaMeCanseiBoraPDS2].planetas);
+    for(int SoQueriaTomarUma=0;SoQueriaTomarUma<num_sistemas;SoQueriaTomarUma++){
+        LiberaLua(sistema[SoQueriaTomarUma].planetas, sistema[SoQueriaTomarUma].quantidade_planetas);
+        free(sistema[SoQueriaTomarUma].planetas);
     }
 }
 
