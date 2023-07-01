@@ -20,26 +20,26 @@ typedef struct Sistema{
 
 }Sistema;
 
-void InputLua(Lua *lua){
+void LuaNoVoid(Lua *lua){
     scanf("\t\t%s %d\n", lua->nome_lua, &lua->raio_lua);
 }
 
-void InputPlaneta(Planeta *planeta, int n_luas){
+void LuaNoPlaneta(Planeta *planeta, int n_luas){
     planeta->quantidade_luas = n_luas;
     planeta->luas = (Lua*) malloc(n_luas*sizeof(Lua));
     for(int i=0;i<n_luas;i++){
-        InputLua(&planeta->luas[i]);
+        LuaNoVoid(&planeta->luas[i]);
     }
 }
 
-void InputSistema(Sistema *sistema, int n_planetas){
+void PlanetaNoSitema(Sistema *sistema, int n_planetas){
     int n_luas = 0;
     Planeta planeta;
     sistema->quantidade_planetas = n_planetas;
     sistema->planetas = (Planeta*) malloc(n_planetas*sizeof(Planeta));
     for(int i=0;i<n_planetas;i++){
         scanf("\t%s %d %d\n", sistema->planetas[i].nome_planeta, &sistema->planetas[i].raio_planeta, &n_luas);
-        InputPlaneta(&sistema->planetas[i], n_luas);
+        LuaNoPlaneta(&sistema->planetas[i], n_luas);
     }
 }
 
@@ -82,7 +82,7 @@ int ComparacaoDosSistemas(Sistema sistema1, Sistema sistema2){
     if(sistema1.planetas[MaiorPlaneta(sistema1)].raio_planeta != sistema2.planetas[MaiorPlaneta(sistema2)].raio_planeta){
         return sistema1.planetas[MaiorPlaneta(sistema1)].raio_planeta > sistema2.planetas[MaiorPlaneta(sistema2)].raio_planeta;
     }
-    if(ContadorDeLuas(sistema1.planetas, sistema1.quantidade_planetas) != ContadorDeLuas(sistema2.planetas, sistema2.quantidade_planetas)){ //TODO LOOP
+    if(ContadorDeLuas(sistema1.planetas, sistema1.quantidade_planetas) != ContadorDeLuas(sistema2.planetas, sistema2.quantidade_planetas)){
         return ContadorDeLuas(sistema1.planetas, sistema1.quantidade_planetas) > ContadorDeLuas(sistema2.planetas, sistema2.quantidade_planetas);
     }
     if(sistema1.planetas->luas[MaiorLua(sistema1)].raio_lua != sistema2.planetas->luas[MaiorLua(sistema2)].raio_lua){
@@ -140,17 +140,31 @@ void BromeroSort(Sistema *Lista_Sistemas, int InicioDoVetor1, int FinalDoVetor2)
     
 }
 
+void LiberaLua(Planeta* planetas, int num_planetas){
+    for(int JaMeCanseiBoraPDS2=0;JaMeCanseiBoraPDS2<num_planetas;JaMeCanseiBoraPDS2++){
+        free(planetas[JaMeCanseiBoraPDS2].luas);
+    }
+}
+void LiberaPlaneta(Sistema *sistema, int num_sistemas){
+    for(int JaMeCanseiBoraPDS2=0;JaMeCanseiBoraPDS2<num_sistemas;JaMeCanseiBoraPDS2++){
+        LiberaLua(sistema[JaMeCanseiBoraPDS2].planetas, sistema[JaMeCanseiBoraPDS2].quantidade_planetas);
+        free(sistema[JaMeCanseiBoraPDS2].planetas);
+    }
+}
+
 int main(){
     int quantidade_sistemas=0, n_planetas=0;
     scanf("%d\n", &quantidade_sistemas);
     Sistema *Lista_Sistemas = (Sistema*) malloc(quantidade_sistemas*sizeof(Sistema));
     for(int i=0;i<quantidade_sistemas;i++){
         scanf("%d %s %d %d", &Lista_Sistemas[i].tempo_descoberta, Lista_Sistemas[i].nome_sistema, &Lista_Sistemas[i].raio_sol, &n_planetas);
-        if(n_planetas!=0)InputSistema(&Lista_Sistemas[i], n_planetas);
+        if(n_planetas!=0)PlanetaNoSitema(&Lista_Sistemas[i], n_planetas);
     }
     BromeroSort(Lista_Sistemas, 0, quantidade_sistemas);
     for(int i=0;i<quantidade_sistemas;i++){
         printf("%s\n", Lista_Sistemas[i].nome_sistema); 
     }
-    
+    LiberaPlaneta(Lista_Sistemas, quantidade_sistemas);
+    free(Lista_Sistemas);
 }
+
