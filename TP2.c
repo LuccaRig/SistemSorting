@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+                    //Inicialização das Structs
 typedef struct Lua{
     char nome_lua[101];
     int raio_lua;
@@ -20,6 +21,11 @@ typedef struct Sistema{
     Planeta *planetas;
 
 }Sistema;
+
+                //Fim da Iniciaçização das Structs
+
+
+                //Alocação dos Planetas e das Luas
 
 void LuaNoVoid(Lua *lua){
     scanf("\t\t%s %d\n", lua->nome_lua, &lua->raio_lua);
@@ -43,6 +49,11 @@ void PlanetaNoSitema(Sistema *sistema, int n_planetas){
         LuaNoPlaneta(&sistema->planetas[i], n_luas);
     }
 }
+
+                //Fim da Alocação dos Planetas e das Luas
+
+
+                //Funções para realizar a comparação da ritação
 
 int MaiorPlaneta(Sistema sistema){
     int maior=0;
@@ -71,6 +82,12 @@ int ContadorDeLuas(Planeta* planetas, int num_planetas){
     }
     return num_luas;
 }
+
+
+                //Fim das Funções para realizar a comparação da ritação
+
+
+                //Ritação e Comparação dos Sistemas
 
 int ComparacaoDosSistemas(Sistema sistema1, Sistema sistema2){
     
@@ -122,6 +139,10 @@ void Ritacao(Sistema *Lista_Sistemas, int InicioDoVetor1, int FinalDoVetor1, int
     free(Sistemas_Ordenados);
 }
 
+                //Fim da Ritação e Comparação
+
+                //BromeroSort
+
 void BromeroSort(Sistema *Lista_Sistemas, int InicioDoVetor1, int FinalDoVetor2){
     int tamanho=0, meio=0;
     tamanho = FinalDoVetor2 - InicioDoVetor1; 
@@ -141,6 +162,9 @@ void BromeroSort(Sistema *Lista_Sistemas, int InicioDoVetor1, int FinalDoVetor2)
     
 }
 
+                //Fim do BromeroSort
+
+                //Liberação de Memória
 void LiberaLua(Planeta* planetas, int num_planetas){
     for(int JaMeCanseiBoraPDS2=0;JaMeCanseiBoraPDS2<num_planetas;JaMeCanseiBoraPDS2++){
         free(planetas[JaMeCanseiBoraPDS2].luas);
@@ -152,6 +176,8 @@ void LiberaPlaneta(Sistema *sistema, int num_sistemas){
         free(sistema[SoQueriaTomarUma].planetas);
     }
 }
+
+                //Fim da liberação de memória
 
 int main(){
     long int quantidade_sistemas=0; 
